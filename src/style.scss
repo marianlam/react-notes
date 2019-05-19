@@ -1,3 +1,15 @@
 body, html {
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.button-utility {
+  opacity: 0.5;
+}
+.button-utility:hover,
+.button-utility:active,
+.button-utility:focus {
+  opacity: 1;
+  outline: none;
 }
