@@ -6,7 +6,7 @@ class Note extends Component {
     this.state = {
       title: 'Hello, stranger',
       text: 'Here is some text. I know you can read. SO READ IT!',
-      x: 100,
+      x: 50,
       y: 100,
       zIndex: 999,
     };

@@ -28,19 +28,21 @@ class CreateNoteModal extends Component {
       };
     }
     return (
-      <div id="create-note-modal" style={modalStyle}>
-        <h2 id="modal-title">create a note</h2>
-        <button id="button-cancel" type="button" onClick={this.props.closeModal}>cancel</button>
-        <div>
-          <div id="color-palette">
-            <ul>
-              {paletteItems}
-            </ul>
-          </div>
-          <div id="input-fields">
-            <input placeholder="Note title" id="note-title" type="text" maxLength="50" />
-            <textarea placeholder="Note content" id="note-content" />
-            <button type="submit">create</button>
+      <div id="modal-container">
+        <div id="create-note-modal" style={modalStyle}>
+          <h2 id="modal-title">create a note</h2>
+          <button id="button-cancel" type="button" onClick={this.props.closeModal}>cancel</button>
+          <div>
+            <div id="color-palette">
+              <ul>
+                {paletteItems}
+              </ul>
+            </div>
+            <div id="input-fields">
+              <input placeholder="Note title" id="note-title" type="text" maxLength="50" />
+              <textarea placeholder="Note content" id="note-content" />
+              <button type="submit">create</button>
+            </div>
           </div>
         </div>
       </div>

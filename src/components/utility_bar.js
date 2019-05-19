@@ -13,13 +13,15 @@ class UtilityBar extends Component {
       boxShadow: '0 2px 2px gray',
       display: 'flex',
       padding: '0 16px',
+      position: 'fixed',
       zIndex: '1000',
+      width: '100%',
     };
 
     const headerStyle = {
       fontWeight: 'lighter',
       margin: '0 18px 0 0',
-      padding: '12px 0',
+      padding: '8px 0 12px 0',
       textTransform: 'lowercase',
     };
 
@@ -27,8 +29,8 @@ class UtilityBar extends Component {
       display: 'flex',
       alignItems: 'center',
       position: 'absolute',
-      top: '6px',
-      right: '16px',
+      top: '4px',
+      right: '40px',
     };
 
     const buttonStyle = {
