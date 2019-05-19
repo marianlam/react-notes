@@ -4,7 +4,8 @@ import ColorPaletteBlock from './color_palette_block';
 class CreateNoteModal extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
   }
 
   render() {
@@ -16,10 +17,20 @@ class CreateNoteModal extends Component {
         </li>
       );
     });
+    let modalStyle;
+    if (this.props.isModalOpen) {
+      modalStyle = {
+        visibility: 'visible',
+      };
+    } else {
+      modalStyle = {
+        visibility: 'hidden',
+      };
+    }
     return (
-      <div id="create-note-modal">
+      <div id="create-note-modal" style={modalStyle}>
         <h2 id="modal-title">create a note</h2>
-        <button id="button-cancel" type="button">cancel</button>
+        <button id="button-cancel" type="button" onClick={this.props.closeModal}>cancel</button>
         <div>
           <div id="color-palette">
             <ul>

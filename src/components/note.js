@@ -6,9 +6,9 @@ class Note extends Component {
     this.state = {
       title: 'Hello, stranger',
       text: 'Here is some text. I know you can read. SO READ IT!',
-      // x: 0,
-      // y: 0,
-      // zIndex: 0
+      x: 100,
+      y: 100,
+      zIndex: 999,
     };
   }
 
@@ -16,9 +16,13 @@ class Note extends Component {
     const noteStyle = {
       display: 'inline-block',
       backgroundColor: '#FFF9C1',
+      boxShadow: '2px 2px 2px gray',
       width: '250px',
       height: '250px',
-      boxShadow: '2px 2px 2px gray',
+      position: 'absolute',
+      top: this.state.y,
+      left: this.state.x,
+      zIndex: this.state.zIndex,
     };
 
     const noteTitleStyle = {
