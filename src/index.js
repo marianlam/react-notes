@@ -10,8 +10,11 @@ class App extends Component {
     super(props);
     this.state = {
       isModalOpen: false,
+      isEditModeOn: false,
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   toggleModal() {
@@ -20,12 +23,33 @@ class App extends Component {
     }));
   }
 
+  toggleEditMode() {
+    this.setState(prevState => ({
+      isEditModeOn: !prevState.isEditModeOn,
+    }));
+    this.setState({
+    });
+  }
+
+  closeModal() {
+    this.setState(prevState => ({
+      isModalOpen: false,
+      isEditModeOn: false,
+    }));
+  }
+
   render() {
     return (
       <div>
         <UtilityBar toggleModal={this.toggleModal} />
-        <CreateNoteModal isModalOpen={this.state.isModalOpen} closeModal={this.toggleModal} />
-        <Note />
+        <CreateNoteModal
+          currEditNoteTitle={this.state.currEditNoteTitle}
+          currEditNoteText={this.state.currEditNoteText}
+          isEditModeOn={this.state.isEditModeOn}
+          isModalOpen={this.state.isModalOpen}
+          closeModal={this.closeModal}
+        />
+        <Note toggleEditMode={this.toggleEditMode} />
       </div>
     );
   }

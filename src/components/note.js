@@ -59,7 +59,7 @@ class Note extends Component {
           <button style={buttonStyle} type="button" className="button-note-delete">
             <i className="fas fa-minus"> </i>
           </button>
-          <button style={buttonStyle} type="button" className="button-note-edit">
+          <button style={buttonStyle} type="button" className="button-note-edit" onClick={this.props.toggleEditMode}>
             <i className="far fa-edit"> </i>
           </button>
         </div>
