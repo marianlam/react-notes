@@ -101,3 +101,18 @@ body {
     }
   }
 }
+
+.button-note-edit {
+  margin-top: -5px;
+}
+
+.button-note-edit,
+.button-note-delete {
+  opacity: 0.5;
+}
+
+.button-note-edit:hover,
+.button-note-delete:hover {
+  opacity: 1;
+  cursor: pointer;
+}

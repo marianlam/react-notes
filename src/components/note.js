@@ -4,7 +4,7 @@ class Note extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Hello, stranger',
+      title: 'Hello, stranger LET\'S SEE HOW FAR THIS CAN GO',
       text: 'Here is some text. I know you can read. SO READ IT!',
       x: 50,
       y: 100,
@@ -25,21 +25,44 @@ class Note extends Component {
       zIndex: this.state.zIndex,
     };
 
+    const buttonContainerStyle = {
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'absolute',
+      top: '0',
+      right: '-4px',
+    };
+
+    const buttonStyle = {
+      background: 'none',
+      border: 'none',
+      fontSize: '10px',
+      outline: 'none',
+    };
+
     const noteTitleStyle = {
       fontSize: '16px',
       fontWeight: 'bold',
-      padding: '12px 14px',
-      margin: 0,
+      padding: '14px',
+      margin: '0',
     };
 
     const noteContentStyle = {
       fontSize: '12px',
       padding: '0 14px 12px 14px',
-      margin: 0,
+      margin: '-8px 0 0 0',
     };
 
     return (
       <div className="note" style={noteStyle}>
+        <div style={buttonContainerStyle}>
+          <button style={buttonStyle} type="button" className="button-note-delete">
+            <i className="fas fa-minus"> </i>
+          </button>
+          <button style={buttonStyle} type="button" className="button-note-edit">
+            <i className="far fa-edit"> </i>
+          </button>
+        </div>
         <h3 style={noteTitleStyle}>{this.state.title}</h3>
         <p style={noteContentStyle}>{this.state.text}</p>
       </div>
