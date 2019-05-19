@@ -14,6 +14,7 @@ class Note extends Component {
 
   render() {
     const noteStyle = {
+      display: 'inline-block',
       backgroundColor: '#FFF9C1',
       width: '250px',
       height: '250px',

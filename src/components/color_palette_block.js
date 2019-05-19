@@ -4,13 +4,15 @@ const ColorPaletteBlock = (props) => {
   const hexCode = props.color;
   const blockStyle = {
     backgroundColor: `#${hexCode}`,
+    boxShadow: '1px 1px 2px gray',
+    cursor: 'pointer',
+    margin: '8px',
     width: '75px',
     height: '75px',
-    cursor: 'pointer',
   };
 
   return (
-    <div style={blockStyle}>
+    <div className="color-palette-blocks" style={blockStyle}>
       {/* {hexCode} */}
     </div>
   );

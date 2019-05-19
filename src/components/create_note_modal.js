@@ -17,18 +17,20 @@ class CreateNoteModal extends Component {
       );
     });
     return (
-      <div>
-        <h2>Cancel</h2>
-        <h2>Create Note</h2>
-        <div id="color-palette">
-          <ul>
-            {paletteItems}
-          </ul>
-        </div>
+      <div id="create-note-modal">
+        <h2 id="modal-title">create a note</h2>
+        <button id="button-cancel" type="button">cancel</button>
         <div>
-          <input id="note-title" type="text" maxLength="50" />
-          <textarea id="note-content" />
-          <button type="submit">Create</button>
+          <div id="color-palette">
+            <ul>
+              {paletteItems}
+            </ul>
+          </div>
+          <div id="input-fields">
+            <input placeholder="Note title" id="note-title" type="text" maxLength="50" />
+            <textarea placeholder="Note content" id="note-content" />
+            <button type="submit">create</button>
+          </div>
         </div>
       </div>
     );

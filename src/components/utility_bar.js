@@ -2,6 +2,7 @@ import React from 'react';
 
 const UtilityBar = () => {
   const utilityBarStyle = {
+    backgroundColor: 'white',
     boxShadow: '0 2px 2px gray',
     display: 'flex',
     padding: '0 16px',
