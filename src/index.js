@@ -51,6 +51,8 @@ class App extends Component {
     }));
   }
 
+  // handleDeleteClick() {}
+
   render() {
     return (
       <div>
@@ -63,6 +65,7 @@ class App extends Component {
           getNoteTitle={noteTitle => this.getNoteTitle(noteTitle)}
           getNoteContent={noteContent => this.getNoteContent(noteContent)}
           toggleEditMode={this.toggleEditMode}
+          handleDeleteClick={this.handleDeleteClick}
         />
         <EditNoteModal
           currNoteTitle={this.state.currNoteTitle}

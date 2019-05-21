@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Draggable from 'react-draggable';
+import marked from 'marked';
 
 class Note extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: 'Hello, stranger LET\'S SEE HOW FAR THIS CAN GO',
-      content: 'Here is some text. I know you can read. SO READ IT!',
+      content: '![](http://i.giphy.com/gyRWkLSQVqlPi.gif)',
       x: 50,
       y: 50,
       zIndex: 999,
@@ -27,8 +28,10 @@ class Note extends Component {
       display: 'inline-block',
       backgroundColor: '#FFF9C1',
       boxShadow: '2px 2px 2px gray',
-      width: '250px',
-      height: '250px',
+      minWidth: '250px',
+      minHeight: '250px',
+      width: 'auto',
+      height: 'auto',
       position: 'absolute',
       top: this.state.y,
       left: this.state.x,
@@ -55,12 +58,13 @@ class Note extends Component {
       fontWeight: 'bold',
       padding: '14px',
       margin: '0',
+      maxWidth: '250px',
     };
 
     const noteContentStyle = {
       fontSize: '12px',
       padding: '0 14px 12px 14px',
-      margin: '-8px 0 0 0',
+      margin: '-12px 0 0 0',
     };
 
     return (
@@ -85,7 +89,7 @@ class Note extends Component {
           onClick={() => { this.props.getNoteTitle(this.state.title); this.props.getNoteContent(this.state.content); }}
         >
           <div style={buttonContainerStyle}>
-            <button style={buttonStyle} type="button" className="button-note-delete">
+            <button style={buttonStyle} type="button" className="button-note-delete" onClick={this.props.handleDeleteClick}>
               <i className="fas fa-minus"> </i>
             </button>
             <button style={buttonStyle} type="button" className="button-note-edit" onClick={this.props.toggleEditMode}>
@@ -93,7 +97,7 @@ class Note extends Component {
             </button>
           </div>
           <h3 style={noteTitleStyle}>{this.state.title}</h3>
-          <p style={noteContentStyle}>{this.state.content}</p>
+          <p style={noteContentStyle} dangerouslySetInnerHTML={{ __html: marked(this.state.content || '') }} />
         </div>
       </Draggable>
     );
