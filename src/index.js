@@ -3,19 +3,19 @@ import ReactDOM from 'react-dom';
 import './style.scss';
 import UtilityBar from './components/utility_bar';
 import CreateNoteModal from './components/create_note_modal';
+import EditNoteModal from './components/edit_note_modal';
 import Note from './components/note';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isModalOpen: false,
+      isCreateModeOn: false,
       isEditModeOn: false,
       currNoteTitle: '',
       currNoteContent: '',
     };
-    // this.getNoteTitle = this.getNoteInfo.bind(this, this.currNoteTitle);
-    this.toggleModal = this.toggleModal.bind(this);
+    this.toggleCreateMode = this.toggleCreateMode.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
@@ -24,20 +24,12 @@ class App extends Component {
     this.setState({
       currNoteTitle: noteTitle,
     });
-    // console.log(this.state.currNoteTitle);
   }
 
   getNoteContent(noteContent) {
     this.setState({
       currNoteContent: noteContent,
     });
-    // console.log(this.state.currNoteContent);
-  }
-
-  toggleModal() {
-    this.setState(prevState => ({
-      isModalOpen: !prevState.isModalOpen,
-    }));
   }
 
   toggleEditMode() {
@@ -46,9 +38,15 @@ class App extends Component {
     }));
   }
 
+  toggleCreateMode() {
+    this.setState(prevState => ({
+      isCreateModeOn: !prevState.isCreateModeOn,
+    }));
+  }
+
   closeModal() {
     this.setState(prevState => ({
-      isModalOpen: false,
+      isCreateModeOn: false,
       isEditModeOn: false,
     }));
   }
@@ -56,18 +54,21 @@ class App extends Component {
   render() {
     return (
       <div>
-        <UtilityBar toggleModal={this.toggleModal} />
+        <UtilityBar toggleCreateMode={this.toggleCreateMode} />
         <CreateNoteModal
-          currNoteTitle={this.state.currNoteTitle}
-          currNoteContent={this.state.currNoteContent}
-          isEditModeOn={this.state.isEditModeOn}
-          isModalOpen={this.state.isModalOpen}
+          isCreateModeOn={this.state.isCreateModeOn}
           closeModal={this.closeModal}
         />
         <Note
           getNoteTitle={noteTitle => this.getNoteTitle(noteTitle)}
           getNoteContent={noteContent => this.getNoteContent(noteContent)}
           toggleEditMode={this.toggleEditMode}
+        />
+        <EditNoteModal
+          currNoteTitle={this.state.currNoteTitle}
+          currNoteContent={this.state.currNoteContent}
+          isEditModeOn={this.state.isEditModeOn}
+          closeModal={this.closeModal}
         />
       </div>
     );
