@@ -47,7 +47,7 @@ class UtilityBar extends Component {
       <div style={utilityBarStyle}>
         <h1 style={headerStyle}>Note Board</h1>
         <div style={buttonContainerStyle}>
-          <button onClick={this.props.toggleModal} style={buttonStyle} className="button-utility" type="button">Create Note</button>
+          <button onClick={this.props.toggleCreateMode} style={buttonStyle} className="button-utility" type="button">Create Note</button>
           <button style={buttonStyle} className="button-utility" type="button">Delete All</button>
           <button style={buttonStyle} className="button-utility" type="button">Organize Notes</button>
         </div>

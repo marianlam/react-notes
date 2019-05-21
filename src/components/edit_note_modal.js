@@ -5,8 +5,8 @@ class EditNoteModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editedTitle: '',
-      editedContent: '',
+    // editedTitle: this.props.currNoteTitle,
+    // editedContent: this.props.currNoteContent,
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -17,12 +17,12 @@ class EditNoteModal extends Component {
     });
   }
 
-  resetForm() {
-    this.setState({
-      editedTitle: this.props.currNoteTitle,
-      editedContent: this.props.currNoteContent,
-    });
-  }
+  // resetForm() {
+  //   this.setState({
+  //     editedTitle: this.props.currNoteTitle,
+  //     editedContent: this.props.currNoteContent,
+  //   });
+  // }
 
   render() {
     const colors = ['FFFFFF', 'FFF9C1', 'FDFF8E', 'FFE1BD',
@@ -35,39 +35,32 @@ class EditNoteModal extends Component {
         </li>
       );
     });
-    let modalStyle;
-    if (this.props.isModalOpen || this.props.isEditModeOn) {
-      modalStyle = {
-        display: 'block',
-      };
-    } else {
-      modalStyle = {
-        display: 'none',
-      };
-    }
-    return (
-      <div id="modal-container">
-        <div id="create-note-modal" style={modalStyle}>
-          <h2 id="modal-title">edit a note</h2>
-          <button id="button-cancel" type="button" onClick={() => { this.props.closeModal(); this.resetForm(); }}>cancel</button>
-          <div>
-            <div id="color-palette">
-              <ul>
-                {paletteItems}
-              </ul>
-            </div>
-            <div id="input-fields">
-              <input value={this.state.editedTitle} name="editedTitle" placeholder="Note title" id="note-title" type="text" maxLength="80" onChange={this.handleChange} />
-              {/* <input defaultValue={this.props.currNoteTitle} placeholder="Note title" id="note-title" type="text" maxLength="80" /> */}
-              <textarea value={this.state.editedContent} name="editedContent" placeholder="Note content" id="note-content" type="text" onChange={this.handleChange} />
-              {/* <textarea defaultValue={this.props.currNoteContent} placeholder="Note content" id="note-content" type="text" /> */}
-              <button type="submit">change</button>
-              {/* <div>{JSON.stringify(this.state)}</div> */}
+    if (this.props.isEditModeOn && !this.props.isCreateModeOn) {
+      return (
+        <div id="modal-container">
+          <div id="create-note-modal">
+            <h2 id="modal-title">edit a note</h2>
+            {/* <button id="button-cancel" type="button" onClick={() => { this.props.closeModal(); this.resetForm(); }}>cancel</button> */}
+            <button id="button-cancel" type="button" onClick={this.props.closeModal}>cancel</button>
+            <div>
+              <div id="color-palette">
+                <ul>
+                  {paletteItems}
+                </ul>
+              </div>
+              <div id="input-fields">
+                <input defaultValue={this.props.currNoteTitle} placeholder="Note title" id="note-title" type="text" maxLength="80" />
+                <textarea defaultValue={this.props.currNoteContent} placeholder="Note content" id="note-content" type="text" />
+                <button type="submit">change</button>
+                {/* <div>{JSON.stringify(this.state)}</div> */}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 

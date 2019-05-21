@@ -7,8 +7,6 @@ class CreateNoteModal extends Component {
     this.state = {
       newTitle: '',
       newContent: '',
-      // editedTitle: '',
-      // editedContent: '',
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -23,8 +21,6 @@ class CreateNoteModal extends Component {
     this.setState({
       newTitle: '',
       newContent: '',
-      // editedTitle: this.props.currNoteTitle,
-      // editedContent: this.props.currNoteContent,
     });
   }
 
@@ -40,7 +36,7 @@ class CreateNoteModal extends Component {
       );
     });
     let modalStyle;
-    if (this.props.isModalOpen || this.props.isEditModeOn) {
+    if (this.props.isCreateModeOn && !this.props.isEditModeOn) {
       modalStyle = {
         display: 'block',
       };
@@ -49,31 +45,6 @@ class CreateNoteModal extends Component {
         display: 'none',
       };
     }
-    // if (this.props.isEditModeOn) {
-    //   return (
-    //     <div id="modal-container">
-    //       <div id="create-note-modal" style={modalStyle}>
-    //         <h2 id="modal-title">edit a note</h2>
-    //         <button id="button-cancel" type="button" onClick={() => { this.props.closeModal(); this.resetForm(); }}>cancel</button>
-    //         <div>
-    //           <div id="color-palette">
-    //             <ul>
-    //               {paletteItems}
-    //             </ul>
-    //           </div>
-    //           <div id="input-fields">
-    //             <input value={this.state.editedTitle} name="editedTitle" placeholder="Note title" id="note-title" type="text" maxLength="80" onChange={this.handleChange} />
-    //             {/* <input defaultValue={this.props.currNoteTitle} placeholder="Note title" id="note-title" type="text" maxLength="80" /> */}
-    //             <textarea value={this.state.editedContent} name="editedContent" placeholder="Note content" id="note-content" type="text" onChange={this.handleChange} />
-    //             {/* <textarea defaultValue={this.props.currNoteContent} placeholder="Note content" id="note-content" type="text" /> */}
-    //             <button type="submit">change</button>
-    //             {/* <div>{JSON.stringify(this.state)}</div> */}
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   );
-    // } else {
     return (
       <div id="modal-container">
         <div id="create-note-modal" style={modalStyle}>
@@ -96,7 +67,6 @@ class CreateNoteModal extends Component {
       </div>
     );
   }
-// }
 }
 
 export default CreateNoteModal;
