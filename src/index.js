@@ -11,10 +11,27 @@ class App extends Component {
     this.state = {
       isModalOpen: false,
       isEditModeOn: false,
+      currNoteTitle: '',
+      currNoteContent: '',
     };
+    // this.getNoteTitle = this.getNoteInfo.bind(this, this.currNoteTitle);
     this.toggleModal = this.toggleModal.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  getNoteTitle(noteTitle) {
+    this.setState({
+      currNoteTitle: noteTitle,
+    });
+    // console.log(this.state.currNoteTitle);
+  }
+
+  getNoteContent(noteContent) {
+    this.setState({
+      currNoteContent: noteContent,
+    });
+    // console.log(this.state.currNoteContent);
   }
 
   toggleModal() {
@@ -27,8 +44,6 @@ class App extends Component {
     this.setState(prevState => ({
       isEditModeOn: !prevState.isEditModeOn,
     }));
-    this.setState({
-    });
   }
 
   closeModal() {
@@ -43,13 +58,17 @@ class App extends Component {
       <div>
         <UtilityBar toggleModal={this.toggleModal} />
         <CreateNoteModal
-          currEditNoteTitle={this.state.currEditNoteTitle}
-          currEditNoteText={this.state.currEditNoteText}
+          currNoteTitle={this.state.currNoteTitle}
+          currNoteContent={this.state.currNoteContent}
           isEditModeOn={this.state.isEditModeOn}
           isModalOpen={this.state.isModalOpen}
           closeModal={this.closeModal}
         />
-        <Note toggleEditMode={this.toggleEditMode} />
+        <Note
+          getNoteTitle={noteTitle => this.getNoteTitle(noteTitle)}
+          getNoteContent={noteContent => this.getNoteContent(noteContent)}
+          toggleEditMode={this.toggleEditMode}
+        />
       </div>
     );
   }

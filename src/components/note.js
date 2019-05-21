@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
+import Draggable from 'react-draggable';
 
 class Note extends Component {
   constructor(props) {
     super(props);
     this.state = {
       title: 'Hello, stranger LET\'S SEE HOW FAR THIS CAN GO',
-      text: 'Here is some text. I know you can read. SO READ IT!',
+      content: 'Here is some text. I know you can read. SO READ IT!',
       x: 50,
-      y: 100,
+      y: 50,
       zIndex: 999,
     };
+    this.handleDrag = this.handleDrag.bind(this);
+  }
+
+  handleDrag(e, data) {
+    console.log(data);
+    this.setState({
+      x: data.x,
+      y: data.y,
+    });
   }
 
   render() {
@@ -30,7 +40,7 @@ class Note extends Component {
       flexDirection: 'column',
       position: 'absolute',
       top: '0',
-      right: '-4px',
+      right: '8px',
     };
 
     const buttonStyle = {
@@ -54,18 +64,38 @@ class Note extends Component {
     };
 
     return (
-      <div className="note" style={noteStyle}>
-        <div style={buttonContainerStyle}>
-          <button style={buttonStyle} type="button" className="button-note-delete">
-            <i className="fas fa-minus"> </i>
-          </button>
-          <button style={buttonStyle} type="button" className="button-note-edit" onClick={this.props.toggleEditMode}>
-            <i className="far fa-edit"> </i>
-          </button>
+      <Draggable
+        handle=".note"
+        grid={[25, 25]}
+        // defaultPosition={{ x: 20, y: 20 }}
+        position={{
+          x: this.state.x,
+          y: this.state.y,
+          width: '250px',
+          height: '250px',
+        }}
+        // onStart={this.handleStartDrag}
+        onDrag={this.handleDrag}
+        // onStop={this.handleStopDrag}
+      >
+        <div className="note"
+          style={noteStyle}
+          role="textbox"
+          tabIndex="-1"
+          onClick={() => { this.props.getNoteTitle(this.state.title); this.props.getNoteContent(this.state.content); }}
+        >
+          <div style={buttonContainerStyle}>
+            <button style={buttonStyle} type="button" className="button-note-delete">
+              <i className="fas fa-minus"> </i>
+            </button>
+            <button style={buttonStyle} type="button" className="button-note-edit" onClick={this.props.toggleEditMode}>
+              <i className="far fa-edit"> </i>
+            </button>
+          </div>
+          <h3 style={noteTitleStyle}>{this.state.title}</h3>
+          <p style={noteContentStyle}>{this.state.content}</p>
         </div>
-        <h3 style={noteTitleStyle}>{this.state.title}</h3>
-        <p style={noteContentStyle}>{this.state.text}</p>
-      </div>
+      </Draggable>
     );
   }
 }

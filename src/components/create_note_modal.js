@@ -5,11 +5,33 @@ class CreateNoteModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      newTitle: '',
+      newContent: '',
+      editedTitle: '',
+      editedContent: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  resetForm() {
+    this.setState({
+      newTitle: '',
+      newContent: '',
+      editedTitle: this.props.currNoteTitle,
+      editedContent: this.props.currNoteContent,
+    });
   }
 
   render() {
-    const colors = ['FFFFFF', 'FFF9C1', 'FDFF8E', 'FFE1BD', 'D9D9D9', '9A92FF', 'F2D6FF', 'FFE6E6', 'E4FFC9', '9CFFD5', '83F8FF', 'B0F1FF'];
+    const colors = ['FFFFFF', 'FFF9C1', 'FDFF8E', 'FFE1BD',
+      'D9D9D9', '9A92FF', 'F2D6FF', 'FFE6E6',
+      'E4FFC9', '9CFFD5', '83F8FF', 'B0F1FF'];
     const paletteItems = colors.map((color) => {
       return (
         <li key={color}>
@@ -20,11 +42,11 @@ class CreateNoteModal extends Component {
     let modalStyle;
     if (this.props.isModalOpen || this.props.isEditModeOn) {
       modalStyle = {
-        visibility: 'visible',
+        display: 'block',
       };
     } else {
       modalStyle = {
-        visibility: 'hidden',
+        display: 'none',
       };
     }
     if (this.props.isEditModeOn) {
@@ -32,7 +54,7 @@ class CreateNoteModal extends Component {
         <div id="modal-container">
           <div id="create-note-modal" style={modalStyle}>
             <h2 id="modal-title">edit a note</h2>
-            <button id="button-cancel" type="button" onClick={this.props.closeModal}>cancel</button>
+            <button id="button-cancel" type="button" onClick={() => { this.props.closeModal(); this.resetForm(); }}>cancel</button>
             <div>
               <div id="color-palette">
                 <ul>
@@ -40,9 +62,12 @@ class CreateNoteModal extends Component {
                 </ul>
               </div>
               <div id="input-fields">
-                <input placeholder="Note title" id="note-title" type="text" maxLength="50" />
-                <textarea placeholder="Note content" id="note-content" />
+                <input value={this.state.editedTitle} name="editedTitle" placeholder="Note title" id="note-title" type="text" maxLength="80" onChange={this.handleChange} />
+                {/* <input defaultValue={this.props.currNoteTitle} placeholder="Note title" id="note-title" type="text" maxLength="80" /> */}
+                <textarea value={this.state.editedContent} name="editedContent" placeholder="Note content" id="note-content" type="text" onChange={this.handleChange} />
+                {/* <textarea defaultValue={this.props.currNoteContent} placeholder="Note content" id="note-content" type="text" /> */}
                 <button type="submit">change</button>
+                {/* <div>{JSON.stringify(this.state)}</div> */}
               </div>
             </div>
           </div>
@@ -53,7 +78,7 @@ class CreateNoteModal extends Component {
         <div id="modal-container">
           <div id="create-note-modal" style={modalStyle}>
             <h2 id="modal-title">create a note</h2>
-            <button id="button-cancel" type="button" onClick={this.props.closeModal}>cancel</button>
+            <button id="button-cancel" type="button" onClick={() => { this.props.closeModal(); this.resetForm(); }}>cancel</button>
             <div>
               <div id="color-palette">
                 <ul>
@@ -61,9 +86,10 @@ class CreateNoteModal extends Component {
                 </ul>
               </div>
               <div id="input-fields">
-                <input placeholder="Note title" id="note-title" type="text" maxLength="50" />
-                <textarea placeholder="Note content" id="note-content" />
+                <input value={this.state.newTitle} name="newTitle" placeholder="Note title" id="note-title" type="text" maxLength="50" onChange={this.handleChange} />
+                <textarea value={this.state.newContent} name="newContent" placeholder="Note content" id="note-content" onChange={this.handleChange} />
                 <button type="submit">create</button>
+                {/* <div>{JSON.stringify(this.state)}</div> */}
               </div>
             </div>
           </div>

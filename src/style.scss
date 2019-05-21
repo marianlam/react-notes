@@ -103,12 +103,13 @@ body {
 }
 
 .button-note-edit {
-  margin-top: -4px;
+  margin-top: -2px;
 }
 
 .button-note-edit,
 .button-note-delete {
   opacity: 0.5;
+  width: 10px;
 }
 
 .button-note-edit:hover,
