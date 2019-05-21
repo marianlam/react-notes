@@ -10,8 +10,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isCreateModeOn: false,
-      isEditModeOn: false,
+      isCreateModalOpen: false,
+      isEditModalOpen: false,
       currNoteTitle: '',
       currNoteContent: '',
     };
@@ -34,20 +34,20 @@ class App extends Component {
 
   toggleEditMode() {
     this.setState(prevState => ({
-      isEditModeOn: !prevState.isEditModeOn,
+      isEditModalOpen: !prevState.isEditModalOpen,
     }));
   }
 
   toggleCreateMode() {
     this.setState(prevState => ({
-      isCreateModeOn: !prevState.isCreateModeOn,
+      isCreateModalOpen: !prevState.isCreateModalOpen,
     }));
   }
 
   closeModal() {
     this.setState(prevState => ({
-      isCreateModeOn: false,
-      isEditModeOn: false,
+      isCreateModalOpen: false,
+      isEditModalOpen: false,
     }));
   }
 
@@ -56,7 +56,7 @@ class App extends Component {
       <div>
         <UtilityBar toggleCreateMode={this.toggleCreateMode} />
         <CreateNoteModal
-          isCreateModeOn={this.state.isCreateModeOn}
+          isCreateModalOpen={this.state.isCreateModalOpen}
           closeModal={this.closeModal}
         />
         <Note
@@ -67,7 +67,7 @@ class App extends Component {
         <EditNoteModal
           currNoteTitle={this.state.currNoteTitle}
           currNoteContent={this.state.currNoteContent}
-          isEditModeOn={this.state.isEditModeOn}
+          isEditModalOpen={this.state.isEditModalOpen}
           closeModal={this.closeModal}
         />
       </div>

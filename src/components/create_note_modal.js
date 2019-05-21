@@ -36,7 +36,7 @@ class CreateNoteModal extends Component {
       );
     });
     let modalStyle;
-    if (this.props.isCreateModeOn && !this.props.isEditModeOn) {
+    if (this.props.isCreateModalOpen && !this.props.isEditModalOpen) {
       modalStyle = {
         display: 'block',
       };

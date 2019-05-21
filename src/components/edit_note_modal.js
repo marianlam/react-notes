@@ -35,7 +35,7 @@ class EditNoteModal extends Component {
         </li>
       );
     });
-    if (this.props.isEditModeOn && !this.props.isCreateModeOn) {
+    if (this.props.isEditModalOpen && !this.props.isCreateModalOpen) {
       return (
         <div id="modal-container">
           <div id="create-note-modal">
